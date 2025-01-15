@@ -21,13 +21,13 @@
         </Grid.ColumnDefinitions>
 
         <VerticalStackLayout Padding="5" Grid.Row="0" Margin="9">
-            <Entry x:Name="Make" Placeholder="Enter Make" Text="{Binding Make}"/>
-            <Entry x:Name="Model" Placeholder="Enter Make" Text="{Binding Model}"/>
-            <Entry x:Name="Vin" Placeholder="Enter Make" Text="{Binding Vin}"/>
+            <Entry x:Name="Make" Placeholder="Enter Make" Text="{Binding Make}" Completed="Make_Completed" TextChanged="Entry_TextChanged"/>
+            <Entry x:Name="Model" Placeholder="Enter Model" Text="{Binding Model}" Completed="Model_Completed" TextChanged="Entry_TextChanged"/>
+            <Entry x:Name="Vin" Placeholder="Enter Vin" Text="{Binding Vin}" Completed="Vin_Completed" TextChanged="Entry_TextChanged"/>
         </VerticalStackLayout>
 
-        <Button Text="Add Car" Grid.Row="1" IsEnabled="{Binding IsNotLoading}" Command="{Binding AddCarCommand}" Margin="9"/>
-        <Button Text="Fetch Cars" Grid.Row="2" IsEnabled="{Binding IsNotLoading}" Command="{Binding GetCarListCommand}" Margin="9"/>
+        <Button Text="{Binding AddEditButtonText}" Grid.Row="1" IsEnabled="{Binding IsNotLoading}" Command="{Binding SaveCarCommand}" Margin="9"/>
+        <Button Text="Clear Form" Grid.Row="2" IsEnabled="{Binding IsNotLoading}" Command="{Binding ClearFormCommand}" Margin="9"/>
 
         <RefreshView Grid.Row="4"
                      Command="{Binding GetCarListCommand}"
@@ -52,7 +52,7 @@
                             <HorizontalStackLayout Grid.Column="1">
                                 <Button Text="Update" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:CarListViewModel}},
-                                        Path=GetCarDetailsCommand}"
+                                        Path=SetEditModeCommand}"
                                         CommandParameter="{Binding Id}"
                                         Margin="9"/>
                                 
